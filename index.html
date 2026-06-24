@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio | Desenvolvedor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="script.js">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Dev.HS</div>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="hero-content">
+                <h1>Olá, sou <span class="destaque">Hugo de Santana</span></h1>
+                <p>Desenvolvedor de Sistemas & Entusiasta em Tecnologia</p>
+                <a href="#projetos" class="btn">Ver Meus Projetos</a>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <h2>Sobre Mim</h2>
+            <div class="sobre-conteudo">
+                <p>Estudante de ADS e Inspetor de Qualidade na Caterpillar, com expertise em hardware, impressão 3D e desenvolvimento de sistemas. Combino o conhecimento técnico de chão de fábrica com a capacidade de projetar arquiteturas de software focadas em automação. Apaixonado por transformar ideias em soluções práticas, tanto no mundo digital quanto no físico.</p>
+                <p>Além do código, tenho hobbies em series,jogos,futebol e momentos em familia.</p>
+            </div>
+        </section>
+
+        <section id="projetos">
+            <h2>Projetos em Destaque</h2>
+            <div class="grid-projetos">
+                
+
+                <div class="card">
+                    <h3>Automação de atividades</h3>
+                    <p>Um sistema que automotiva atividades do dia a dia, como lembretes de atividade futuras e recados.</p>
+                    <div class="tags">
+                        <span>Modelagem de Sistemas</span>
+                        <span>padronização</span>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Sistema de conferencia</h3>
+                    <p>Criado um sistema de conferencia de estoque para manter sempre atualizado conforme entra e sai material.</p>
+                    <div class="tags">
+                        <span>Estoque</span>
+                        <span>Organização</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>Vamos Conversar?</h2>
+            <p>Preencha o formulário abaixo e entrarei em contato o mais breve possível.</p>
+            
+            <form id="form-contato" class="contact-form">
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </section>
+</body>
+</html>
