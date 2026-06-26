@@ -257,14 +257,54 @@ section h2 {
 }
 
 /* --- Responsividade (Ajustes para Celulares) --- */
+/* --- Menu Hambúrguer (Botão) --- */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--primary);
+    user-select: none;
+}
+
+/* --- Responsividade (Ajustes para Celulares) --- */
 @media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 1rem;
+    .menu-toggle {
+        display: block; /* Mostra o botão no celular */
     }
+    
     .nav-links {
-        display: flex !important;
-        gap: 1.2rem;
-        font-size: 0.9rem;
+        display: none; /* Esconde o menu aberto por padrão */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Cola logo abaixo do cabeçalho */
+        left: 0;
+        width: 100%;
+        background-color: rgba(30, 41, 59, 0.95); /* Cor de fundo com leve transparência */
+        backdrop-filter: blur(10px);
+        padding: 1.5rem 0;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+    }
+    
+    /* Classe que o JavaScript vai ativar para mostrar o menu */
+    .nav-links.active {
+        display: flex; 
+    }
+    
+    .nav-links li {
+        margin: 1rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    section {
+        padding: 5rem 1.5rem 3rem;
+    }
+    
+    .card {
+        padding: 1.5rem;
     }
 }
