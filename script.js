@@ -1,45 +1,64 @@
-// Funcionalidade 1: Rolagem suave para os links de navegação
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        
-        if (targetElement) {
-            // Calcula a posição considerando a altura do header fixo
-            const headerOffset = 70;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-  
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-        }
+// Aguarda o DOM carregar completamente
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // --- 1. Validação e Envio do Formulário de Contato ---
+    const formContato = document.getElementById('form-contato');
+    
+    if (formContato) {
+        formContato.addEventListener('submit', (e) => {
+            e.preventDefault(); // Impede o recarregamento padrão da página
+            
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
+            
+            if (nome === '' || email === '' || mensagem === '') {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+            
+            // Simulação de envio bem-sucedido (Aqui você integrará com Formspree, Web3Forms ou seu backend)
+            const btn = formContato.querySelector('.btn');
+            const textoOriginal = btn.innerText;
+            
+            btn.innerText = 'Enviando...';
+            btn.style.opacity = '0.7';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`Obrigado pelo contato, ${nome}! Sua mensagem foi enviada com sucesso.`);
+                formContato.reset();
+                btn.innerText = textoOriginal;
+                btn.style.opacity = '1';
+                btn.disabled = false;
+            }, 1500);
+        });
+    }
+
+    // --- 2. Animação de Surgimento ao Rolar a Página (Scroll Reveal) ---
+    const secoes = document.querySelectorAll('section, .card');
+    
+    const observerOptions = {
+        root: null, // Usa o viewport do navegador
+        threshold: 0.1, // Dispara quando 10% do elemento aparece
+        rootMargin: "0px 0px -50px 0px" // Ajuste para disparar um pouco antes do elemento centralizar
+    };
+    
+    const secaoObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observer.unobserve(entry.target); // Para de observar após animar
+            }
+        });
+    }, observerOptions);
+    
+    // Configura o estado inicial das seções para a animação
+    secoes.forEach(secao => {
+        secao.style.opacity = '0';
+        secao.style.transform = 'translateY(30px)';
+        secao.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        secaoObserver.observe(secao);
     });
 });
-
-// Funcionalidade 2: Atualizar o ano do copyright no footer automaticamente
-const anoAtual = new Date().getFullYear();
-const elementoAno = document.getElementById('ano-atual');
-if (elementoAno) {
-    elementoAno.textContent = anoAtual;
-}
-// Funcionalidade 3: Validação e simulação de envio do formulário de contato
-const formContato = document.getElementById('form-contato');
-
-if (formContato) {
-    formContato.addEventListener('submit', function(e) {
-        // Evita que a página seja recarregada ao enviar o formulário
-        e.preventDefault(); 
-        
-        // Aqui é onde você integraria com um backend (como Node.js/PHP) 
-        // ou um serviço de formulários estáticos (como Formspree ou EmailJS)
-        
-        alert('Mensagem enviada com sucesso! Em breve entrarei em contato.');
-        
-        // Limpa os campos do formulário após o envio
-        this.reset(); 
-    });
-}
