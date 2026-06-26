@@ -1,6 +1,24 @@
 // Aguarda o DOM carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
     
+    // --- Lógica do Menu Hambúrguer (Celular) ---
+    const menuMobile = document.getElementById('menu-mobile');
+    const navLinks = document.querySelector('.nav-links');
+    const linksInternos = document.querySelectorAll('.nav-links a');
+
+    if (menuMobile) {
+        // Abre e fecha o menu ao clicar no botão (☰)
+        menuMobile.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Fecha o menu automaticamente quando você clica em algum link (Sobre, Projetos, etc)
+        linksInternos.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    }
     // --- 1. Validação e Envio do Formulário de Contato ---
     const formContato = document.getElementById('form-contato');
     
